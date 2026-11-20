@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using signalr.backend.Data;
 using signalr.backend.Hubs;
+using signalr.backend.Service;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -106,6 +107,10 @@ builder.Services.AddAuthentication(options =>
 
 // TODO Ajouter SignalR
 builder.Services.AddSignalR();
+
+// Ajouter Background Service
+builder.Services.AddSingleton<MonBackgroundService>();
+builder.Services.AddHostedService<MonBackgroundService>(p => p.GetService<MonBackgroundService>());
 
 var app = builder.Build();
 

@@ -45,6 +45,11 @@ export default function ChatComponent({ hubConnection, onConnected }: ChatCompon
       setSelectedChannel(null)
     });
 
+    // TODO: Écouter le message afficher le channel le plus populaire
+    hubConnection.on('MostPopularChannel', (messagesCount) => {
+      alert(`Vous êtes dans le canal le plus populaire avec ${messagesCount} messages`);
+    });
+
     // Tous les handlers sont enregistrés : on peut maintenant démarrer la connexion.
     if (hubConnection.state === HubConnectionState.Disconnected) {
       hubConnection

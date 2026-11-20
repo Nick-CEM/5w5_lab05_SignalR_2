@@ -10,4 +10,5 @@ export interface UserData {
 export interface Channel {
   id: number;
   title: string;
+  nbMessages: number;
 }
